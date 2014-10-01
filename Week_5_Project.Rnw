@@ -1,0 +1,56 @@
+\documentclass{article}
+
+\begin{document}
+\SweaveOpts{concordance=TRUE}
+\author{Riguel Fabre}
+\section*{Insurance Data Profile}
+\subsection*{Data Preview}
+<<prepare_data>>=
+
+path <- "C:/Users/Tablet/Documents/R/Project/FL_insurance_sample.csv"
+insure_file <- read.table(file = path, header = TRUE,sep = ",")
+insure_file[1:5,]
+@
+\subsection*{Data Summary}
+<<Number of Observations>>=
+summary(insure_file)
+@
+\subsection*{Variables}
+
+\subsubsection*{List of Variables}
+<<List of Variables>>=
+list_V<-names(insure_file)
+list_V
+@
+\subsubsection*{Number of Variables}
+<<Number of Variable>>=
+num_V<-length(list_V)
+num_V
+@
+\subsubsection*{Variables Types}
+<<Variable Types>>=
+Typ_V<-c()
+for( i in 1:length(insure_file))
+{
+  Typ_V<-c(Typ_V,class(insure_file[,i]))
+}
+Typ_V
+@
+
+\subsection*{Observations}
+\subsubsection*{Number of Observations}
+<<Number of Observations>>=
+Obser<-length(insure_file$policyID)
+Obser
+@
+
+\subsubsection*{Variables Correlations}
+<<Number of Observations>>=
+head(insure_file$statecode)
+head(insure_file$county)
+print("Statecode and county are correlated because the county variable relies on the statecode")
+@
+
+
+
+\end{document}
